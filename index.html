@@ -4,325 +4,326 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Megumi Ghi Nợ - Quản Lý Chi Tiêu</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         body {
-            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4338ca 100%);
+            background: #0f172a;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #f8fafc;
             min-height: 100vh;
-            background-attachment: fixed;
-            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
         }
-
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
+        .bg-glow {
+            position: fixed;
+            top: -20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(168, 85, 247, 0.05) 50%, rgba(0,0,0,0) 70%);
+            z-index: 0;
+            pointer-events: none;
         }
-
         .glass-card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            transition: all 0.2s ease;
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
-
+        .glass-card:hover {
+            border-color: rgba(99, 102, 241, 0.3);
+        }
         .glass-input {
-            background: rgba(255, 255, 255, 0.9);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            color: #0f172a;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ffffff;
         }
-
         .glass-input:focus {
-            background: #ffffff;
-            border-color: #818cf8;
             outline: none;
-            box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.4);
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
         }
-
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.05);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 10px;
-        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
     </style>
 </head>
-<body class="text-white p-4 md:p-8">
+<body class="relative">
 
-    <div class="max-w-5xl mx-auto space-y-6">
+    <div class="bg-glow"></div>
+
+    <div class="relative z-10 max-w-4xl mx-auto px-4 py-8 space-y-6">
 
         <!-- HEADER -->
-        <header class="glass-panel rounded-3xl p-5 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <div class="flex items-center gap-4">
-                <div class="w-12 h-12 rounded-2xl bg-indigo-500 flex items-center justify-center text-xl shadow-lg font-bold">
-                    💳
+        <header class="glass-card rounded-2xl p-4 md:p-6 flex flex-col sm:flex-row justify-between items-center gap-4 shadow-2xl">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center text-xl font-bold text-white shadow-lg shadow-indigo-500/30">
+                    <i class="fa-solid fa-wallet"></i>
                 </div>
                 <div>
-                    <h1 class="text-2xl font-extrabold tracking-wide">MEGUMI GHI NỢ</h1>
-                    <p class="text-xs text-indigo-200">Sổ Quản Lý Chi Tiêu & Ghi Nợ Cá Nhân</p>
+                    <h1 class="text-xl font-extrabold tracking-wide text-white">MEGUMI GHI NỢ</h1>
+                    <p class="text-xs text-slate-400">Đồng bộ Cloud & Đăng nhập Google</p>
                 </div>
             </div>
-            <button onclick="exportData()" class="glass-card px-4 py-2 rounded-xl text-xs font-semibold hover:bg-white hover:text-indigo-900 transition flex items-center gap-2">
-                <i class="fa-solid fa-download"></i> Tải dữ liệu (JSON)
-            </button>
+
+            <!-- GOOGLE AUTH BUTTON -->
+            <div id="authContainer">
+                <button id="loginBtn" onclick="loginWithGoogle()" class="hidden bg-white text-slate-900 font-bold px-4 py-2.5 rounded-xl text-xs hover:bg-slate-100 transition shadow-lg flex items-center gap-2">
+                    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" class="w-4 h-4">
+                    Đăng nhập Google
+                </button>
+                <div id="userInfo" class="hidden flex items-center gap-3">
+                    <img id="userAvatar" class="w-9 h-9 rounded-full border border-indigo-500/50">
+                    <div class="text-left hidden sm:block">
+                        <p id="userName" class="text-xs font-bold text-white leading-tight"></p>
+                        <button onclick="logout()" class="text-[10px] text-slate-400 hover:text-rose-400 underline">Đăng xuất</button>
+                    </div>
+                </div>
+            </div>
         </header>
 
-        <!-- DASHBOARD -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div class="glass-panel rounded-2xl p-5">
-                <p class="text-xs text-indigo-200 uppercase font-semibold">Cần thu về (Họ nợ)</p>
-                <h2 id="totalReceivable" class="text-2xl font-extrabold text-emerald-400 mt-1">0 ₫</h2>
+        <!-- STATS CARDS -->
+        <div class="grid grid-cols-3 gap-3 md:gap-4">
+            <div class="glass-card rounded-2xl p-4 border-l-4 border-emerald-500">
+                <p class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Cần thu về</p>
+                <h2 id="totalReceivable" class="text-lg md:text-2xl font-black text-emerald-400 mt-1">0 ₫</h2>
             </div>
-            <div class="glass-panel rounded-2xl p-5">
-                <p class="text-xs text-indigo-200 uppercase font-semibold">Cần trả đi (Nợ họ)</p>
-                <h2 id="totalPayable" class="text-2xl font-extrabold text-rose-400 mt-1">0 ₫</h2>
+            <div class="glass-card rounded-2xl p-4 border-l-4 border-rose-500">
+                <p class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Cần trả đi</p>
+                <h2 id="totalPayable" class="text-lg md:text-2xl font-black text-rose-400 mt-1">0 ₫</h2>
             </div>
-            <div class="glass-panel rounded-2xl p-5">
-                <p class="text-xs text-indigo-200 uppercase font-semibold">Dư nợ thực tế</p>
-                <h2 id="netBalance" class="text-2xl font-extrabold text-amber-300 mt-1">0 ₫</h2>
+            <div class="glass-card rounded-2xl p-4 border-l-4 border-indigo-500">
+                <p class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Dư nợ thực</p>
+                <h2 id="netBalance" class="text-lg md:text-2xl font-black text-indigo-300 mt-1">0 ₫</h2>
             </div>
         </div>
 
-        <!-- MAIN CONTENT -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-            <!-- FORM NHẬP -->
-            <div class="glass-panel rounded-3xl p-5 space-y-4">
-                <h3 class="text-base font-bold flex items-center gap-2 border-b border-white/10 pb-3">
-                    📝 Thêm Giao Dịch
+            <!-- FORM TẠO NỢ -->
+            <div class="glass-card rounded-2xl p-5 space-y-4 h-fit">
+                <h3 class="text-sm font-bold text-white flex items-center gap-2 pb-3 border-b border-slate-700/50">
+                    <i class="fa-solid fa-plus-circle text-indigo-400"></i> Thêm giao dịch mới
                 </h3>
 
-                <form id="debtForm" onsubmit="handleFormSubmit(event)" class="space-y-3">
+                <form id="debtForm" onsubmit="addDebt(event)" class="space-y-3">
                     <div>
-                        <label class="block text-xs font-medium text-indigo-200 mb-1">Loại giao dịch</label>
+                        <label class="block text-[11px] text-slate-400 font-medium mb-1">Loại</label>
                         <div class="grid grid-cols-2 gap-2">
                             <label class="cursor-pointer">
                                 <input type="radio" name="type" value="receivable" class="peer hidden" checked>
-                                <div class="glass-card p-2 rounded-xl text-center text-xs font-bold peer-checked:bg-emerald-500 peer-checked:text-white">
-                                    Cho vay
-                                </div>
+                                <div class="glass-card p-2 rounded-xl text-center text-xs font-bold peer-checked:bg-emerald-500/20 peer-checked:text-emerald-400 peer-checked:border-emerald-500/50 transition">Cho vay</div>
                             </label>
                             <label class="cursor-pointer">
                                 <input type="radio" name="type" value="payable" class="peer hidden">
-                                <div class="glass-card p-2 rounded-xl text-center text-xs font-bold peer-checked:bg-rose-500 peer-checked:text-white">
-                                    Đi vay
-                                </div>
+                                <div class="glass-card p-2 rounded-xl text-center text-xs font-bold peer-checked:bg-rose-500/20 peer-checked:text-rose-400 peer-checked:border-rose-500/50 transition">Đi vay</div>
                             </label>
                         </div>
                     </div>
 
                     <div>
-                        <label class="block text-xs font-medium text-indigo-200 mb-1">Tên đối tác</label>
-                        <input type="text" id="person" required placeholder="Ví dụ: Anh Nam..." class="w-full glass-input rounded-xl px-3 py-2 text-sm font-medium">
+                        <label class="block text-[11px] text-slate-400 font-medium mb-1">Tên đối tác</label>
+                        <input type="text" id="person" required placeholder="Ví dụ: Anh Nam..." class="w-full glass-input rounded-xl px-3 py-2 text-xs">
                     </div>
 
                     <div>
-                        <label class="block text-xs font-medium text-indigo-200 mb-1">Số tiền (VNĐ)</label>
-                        <input type="number" id="amount" required min="1000" step="1000" placeholder="0" class="w-full glass-input rounded-xl px-3 py-2 text-sm font-bold">
+                        <label class="block text-[11px] text-slate-400 font-medium mb-1">Số tiền (VNĐ)</label>
+                        <input type="number" id="amount" required min="1000" step="1000" placeholder="0" class="w-full glass-input rounded-xl px-3 py-2 text-xs font-bold text-indigo-300">
                     </div>
 
                     <div>
-                        <label class="block text-xs font-medium text-indigo-200 mb-1">Ghi chú / Lý do</label>
-                        <input type="text" id="note" placeholder="Ví dụ: Ăn trưa, mượn đồ..." class="w-full glass-input rounded-xl px-3 py-2 text-sm font-medium">
+                        <label class="block text-[11px] text-slate-400 font-medium mb-1">Ghi chú</label>
+                        <input type="text" id="note" placeholder="Ví dụ: Tiền ăn trưa..." class="w-full glass-input rounded-xl px-3 py-2 text-xs">
                     </div>
 
-                    <div>
-                        <label class="block text-xs font-medium text-indigo-200 mb-1">Hạn trả (Không bắt buộc)</label>
-                        <input type="date" id="dueDate" class="w-full glass-input rounded-xl px-3 py-2 text-sm font-medium">
-                    </div>
-
-                    <button type="submit" class="w-full bg-indigo-500 hover:bg-indigo-600 font-bold py-2.5 rounded-xl transition text-sm shadow-lg mt-2">
+                    <button type="submit" id="submitBtn" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-2.5 rounded-xl transition text-xs shadow-lg shadow-indigo-600/30 mt-2">
                         + Lưu Giao Dịch
                     </button>
                 </form>
             </div>
 
             <!-- DANH SÁCH -->
-            <div class="lg:col-span-2 glass-panel rounded-3xl p-5 flex flex-col justify-between">
-                <div>
-                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 mb-4">
-                        <h3 class="text-base font-bold flex items-center gap-2">
-                            📋 Sổ Chi Tiết
-                        </h3>
-                        
-                        <div class="flex gap-1.5">
-                            <button onclick="setFilter('all')" id="btn-all" class="px-3 py-1 rounded-lg text-xs font-bold bg-white text-indigo-950">Tất cả</button>
-                            <button onclick="setFilter('receivable')" id="btn-receivable" class="px-3 py-1 rounded-lg text-xs font-bold glass-card">Cho vay</button>
-                            <button onclick="setFilter('payable')" id="btn-payable" class="px-3 py-1 rounded-lg text-xs font-bold glass-card">Đi vay</button>
-                        </div>
-                    </div>
-
-                    <input type="text" id="searchInput" oninput="renderDebts()" placeholder="🔍 Tìm kiếm tên hoặc ghi chú..." class="w-full mb-4 glass-input rounded-xl px-3 py-2 text-sm">
-
-                    <div id="debtList" class="space-y-2 max-h-[380px] overflow-y-auto pr-1">
-                        <!-- Render JS -->
-                    </div>
+            <div class="md:col-span-2 glass-card rounded-2xl p-5 space-y-4">
+                <div class="flex justify-between items-center gap-2 pb-2 border-b border-slate-700/50">
+                    <h3 class="text-sm font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-list-check text-indigo-400"></i> Danh Sách Ghi Nợ
+                    </h3>
+                    <select id="filterSelect" onchange="render()" class="glass-input rounded-xl px-2 py-1 text-xs font-semibold">
+                        <option value="all">Tất cả</option>
+                        <option value="receivable">Cho vay</option>
+                        <option value="payable">Đi vay</option>
+                    </select>
                 </div>
 
-                <p class="text-[11px] text-center text-indigo-200 pt-3 border-t border-white/10 mt-4">
-                    Tất cả dữ liệu được tự động lưu an toàn trong bộ nhớ máy của bạn.
-                </p>
-            </div>
+                <input type="text" id="searchInput" oninput="render()" placeholder="🔍 Tìm kiếm đối tác, ghi chú..." class="w-full glass-input rounded-xl px-3 py-2 text-xs">
 
+                <div id="debtList" class="space-y-2 max-h-[380px] overflow-y-auto pr-1"></div>
+            </div>
         </div>
     </div>
 
+    <!-- FIREBASE SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
     <script>
+        // --- 1. CẤU HÌNH FIREBASE (Dán cấu hình của bạn vào đây) ---
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT_ID.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        let currentUser = null;
         let debts = [];
-        try {
-            debts = JSON.parse(localStorage.getItem('megumi_debts')) || [];
-        } catch (e) {
-            debts = [];
-        }
 
-        let currentFilter = 'all';
+        const fmt = num => new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(num);
 
-        function formatMoney(amount) {
-            return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
-        }
-
-        function formatDate(dateStr) {
-            if (!dateStr) return '';
-            const parts = dateStr.split('-');
-            return parts.length === 3 ? `${parts[2]}/${parts[1]}/${parts[0]}` : dateStr;
-        }
-
-        function saveData() {
-            localStorage.setItem('megumi_debts', JSON.stringify(debts));
-            updateDashboard();
-            renderDebts();
-        }
-
-        function handleFormSubmit(e) {
-            e.preventDefault();
-            const type = document.querySelector('input[name="type"]:checked').value;
-            const person = document.getElementById('person').value.trim();
-            const amount = parseFloat(document.getElementById('amount').value);
-            const note = document.getElementById('note').value.trim();
-            const dueDate = document.getElementById('dueDate').value;
-
-            if (!person || isNaN(amount) || amount <= 0) {
-                alert('Vui lòng nhập tên và số tiền hợp lệ!');
-                return;
+        // --- 2. AUTHENTICATION (XỬ LÝ ĐĂNG NHẬP) ---
+        auth.onAuthStateChanged(user => {
+            currentUser = user;
+            if (user) {
+                document.getElementById('loginBtn').classList.add('hidden');
+                document.getElementById('userInfo').classList.remove('hidden');
+                document.getElementById('userAvatar').src = user.photoURL || 'https://via.placeholder.com/40';
+                document.getElementById('userName').innerText = user.displayName || user.email;
+                loadCloudData();
+            } else {
+                document.getElementById('loginBtn').classList.remove('hidden');
+                document.getElementById('userInfo').classList.add('hidden');
+                loadLocalData();
             }
+        });
 
-            debts.unshift({
-                id: Date.now(),
-                type, person, amount, note, dueDate,
-                createdAt: new Date().toISOString().split('T')[0],
-                status: 'pending'
-            });
+        function loginWithGoogle() {
+            const provider = new firebase.auth.GoogleAuthProvider();
+            auth.signInWithPopup(provider).catch(err => alert("Lỗi đăng nhập: " + err.message));
+        }
 
-            saveData();
+        function logout() {
+            auth.signOut().then(() => { debts = []; render(); });
+        }
+
+        // --- 3. DỮ LIỆU (LOCAL & CLOUD) ---
+        function loadLocalData() {
+            debts = JSON.parse(localStorage.getItem('megumi_debts')) || [];
+            render();
+        }
+
+        function loadCloudData() {
+            if (!currentUser) return;
+            db.collection('users').doc(currentUser.uid).collection('debts')
+                .orderBy('createdAt', 'desc')
+                .onSnapshot(snapshot => {
+                    debts = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                    render();
+                });
+        }
+
+        async function addDebt(e) {
+            e.preventDefault();
+            const newDebt = {
+                type: document.querySelector('input[name="type"]:checked').value,
+                person: document.getElementById('person').value.trim(),
+                amount: parseFloat(document.getElementById('amount').value),
+                note: document.getElementById('note').value.trim(),
+                status: 'pending',
+                createdAt: Date.now()
+            };
+
+            if (currentUser) {
+                await db.collection('users').doc(currentUser.uid).collection('debts').add(newDebt);
+            } else {
+                newDebt.id = Date.now().toString();
+                debts.unshift(newDebt);
+                localStorage.setItem('megumi_debts', JSON.stringify(debts));
+                render();
+            }
             document.getElementById('debtForm').reset();
         }
 
-        function toggleStatus(id) {
-            debts = debts.map(d => d.id === id ? { ...d, status: d.status === 'pending' ? 'paid' : 'pending' } : d);
-            saveData();
-        }
-
-        function deleteDebt(id) {
-            if (confirm('Xóa khoản này khỏi danh sách?')) {
-                debts = debts.filter(d => d.id !== id);
-                saveData();
+        async function toggleStatus(id, currentStatus) {
+            const nextStatus = currentStatus === 'pending' ? 'paid' : 'pending';
+            if (currentUser) {
+                await db.collection('users').doc(currentUser.uid).collection('debts').doc(id).update({ status: nextStatus });
+            } else {
+                debts = debts.map(d => d.id === id ? { ...d, status: nextStatus } : d);
+                localStorage.setItem('megumi_debts', JSON.stringify(debts));
+                render();
             }
         }
 
-        function setFilter(filter) {
-            currentFilter = filter;
-            ['all', 'receivable', 'payable'].forEach(f => {
-                const btn = document.getElementById(`btn-${f}`);
-                if (btn) {
-                    btn.className = f === filter 
-                        ? "px-3 py-1 rounded-lg text-xs font-bold bg-white text-indigo-950" 
-                        : "px-3 py-1 rounded-lg text-xs font-bold glass-card";
+        async function deleteDebt(id) {
+            if (!confirm('Xóa khoản nợ này?')) return;
+            if (currentUser) {
+                await db.collection('users').doc(currentUser.uid).collection('debts').doc(id).delete();
+            } else {
+                debts = debts.filter(d => d.id !== id);
+                localStorage.setItem('megumi_debts', JSON.stringify(debts));
+                render();
+            }
+        }
+
+        function render() {
+            const search = document.getElementById('searchInput').value.toLowerCase();
+            const filter = document.getElementById('filterSelect').value;
+
+            let rec = 0, pay = 0;
+            debts.forEach(d => {
+                if (d.status === 'pending') {
+                    if (d.type === 'receivable') rec += d.amount; else pay += d.amount;
                 }
             });
-            renderDebts();
-        }
 
-        function updateDashboard() {
-            const totalReceivable = debts.filter(d => d.type === 'receivable' && d.status === 'pending').reduce((s, d) => s + d.amount, 0);
-            const totalPayable = debts.filter(d => d.type === 'payable' && d.status === 'pending').reduce((s, d) => s + d.amount, 0);
+            document.getElementById('totalReceivable').innerText = fmt(rec);
+            document.getElementById('totalPayable').innerText = fmt(pay);
+            document.getElementById('netBalance').innerText = fmt(rec - pay);
 
-            document.getElementById('totalReceivable').innerText = formatMoney(totalReceivable);
-            document.getElementById('totalPayable').innerText = formatMoney(totalPayable);
-            document.getElementById('netBalance').innerText = formatMoney(totalReceivable - totalPayable);
-        }
+            const filtered = debts.filter(d => 
+                (filter === 'all' || d.type === filter) &&
+                (d.person.toLowerCase().includes(search) || d.note.toLowerCase().includes(search))
+            );
 
-        function renderDebts() {
             const listEl = document.getElementById('debtList');
-            const search = document.getElementById('searchInput').value.toLowerCase();
-
-            const filtered = debts.filter(d => {
-                const matchFilter = currentFilter === 'all' || d.type === currentFilter;
-                const matchSearch = d.person.toLowerCase().includes(search) || d.note.toLowerCase().includes(search);
-                return matchFilter && matchSearch;
-            });
-
-            if (filtered.length === 0) {
-                listEl.innerHTML = `<div class="text-center py-6 text-indigo-200 text-xs">Chưa có dữ liệu phù hợp</div>`;
+            if (!filtered.length) {
+                listEl.innerHTML = `<div class="text-center py-8 text-xs text-slate-500">Chưa có dữ liệu giao dịch</div>`;
                 return;
             }
 
-            listEl.innerHTML = filtered.map(d => {
-                const isPaid = d.status === 'paid';
-                const isReceivable = d.type === 'receivable';
-
-                return `
-                    <div class="glass-card rounded-xl p-3 flex items-center justify-between gap-3 ${isPaid ? 'opacity-50' : ''}">
-                        <div class="flex items-center gap-3">
-                            <button onclick="toggleStatus(${d.id})" class="w-6 h-6 rounded-lg flex items-center justify-center text-xs font-bold ${isPaid ? 'bg-emerald-500 text-white' : 'border border-white/50 text-transparent'}">
-                                ✓
-                            </button>
-                            <div>
-                                <div class="flex items-center gap-2">
-                                    <span class="font-bold text-sm ${isPaid ? 'line-through' : ''}">${d.person}</span>
-                                    <span class="text-[10px] px-1.5 py-0.5 rounded font-bold ${isReceivable ? 'bg-emerald-500/30 text-emerald-200' : 'bg-rose-500/30 text-rose-200'}">
-                                        ${isReceivable ? 'Cho vay' : 'Đi vay'}
-                                    </span>
-                                </div>
-                                <p class="text-xs text-indigo-100">${d.note || 'Không có ghi chú'}</p>
+            listEl.innerHTML = filtered.map(d => `
+                <div class="glass-card rounded-xl p-3 flex items-center justify-between gap-3 text-xs transition ${d.status === 'paid' ? 'opacity-40' : ''}">
+                    <div class="flex items-center gap-3">
+                        <button onclick="toggleStatus('${d.id}', '${d.status}')" class="w-6 h-6 rounded-lg border border-slate-600 flex items-center justify-center font-bold transition ${d.status === 'paid' ? 'bg-emerald-500 text-white border-none' : 'hover:border-indigo-400'}">
+                            ${d.status === 'paid' ? '✓' : ''}
+                        </button>
+                        <div>
+                            <div class="font-bold text-white flex items-center gap-2">
+                                <span class="${d.status === 'paid' ? 'line-through text-slate-400' : ''}">${d.person}</span>
+                                <span class="text-[9px] px-1.5 py-0.5 rounded font-bold ${d.type === 'receivable' ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-rose-500/20 text-rose-400 border border-rose-500/30'}">
+                                    ${d.type === 'receivable' ? 'Cho vay' : 'Đi vay'}
+                                </span>
                             </div>
-                        </div>
-
-                        <div class="text-right">
-                            <div class="font-bold text-sm ${isReceivable ? 'text-emerald-300' : 'text-rose-300'} ${isPaid ? 'line-through' : ''}">
-                                ${isReceivable ? '+' : '-'}${formatMoney(d.amount)}
-                            </div>
-                            <button onclick="deleteDebt(${d.id})" class="text-[10px] text-rose-300 hover:underline">Xóa</button>
+                            <p class="text-[11px] text-slate-400">${d.note || 'Không có ghi chú'}</p>
                         </div>
                     </div>
-                `;
-            }).join('');
+                    <div class="text-right">
+                        <div class="font-bold text-sm ${d.type === 'receivable' ? 'text-emerald-400' : 'text-rose-400'} ${d.status === 'paid' ? 'line-through opacity-70' : ''}">
+                            ${d.type === 'receivable' ? '+' : '-'}${fmt(d.amount)}
+                        </div>
+                        <button onclick="deleteDebt('${d.id}')" class="text-[10px] text-rose-400/70 hover:text-rose-400 hover:underline">Xóa</button>
+                    </div>
+                </div>
+            `).join('');
         }
-
-        function exportData() {
-            const blob = new Blob([JSON.stringify(debts, null, 2)], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `megumi-ghi-no-${new Date().toISOString().split('T')[0]}.json`;
-            a.click();
-            URL.revokeObjectURL(url);
-        }
-
-        updateDashboard();
-        renderDebts();
     </script>
 </body>
 </html>
