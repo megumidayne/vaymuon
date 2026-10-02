@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#167653">
+<title>Megumi Ghi Nợ</title>
+<style>
+:root{--bg:#f4f8f5;--panel:#fff;--text:#1c2b25;--muted:#718078;--line:#e4ece7;--green:#16845b;--green2:#e5f5ec;--red:#c94f55;--redbg:#fff0f0;--amber:#a66a0b;--amberbg:#fff4dc;--blue:#316fc4;--bluebg:#edf4ff;--purple:#7852b8;--purplebg:#f3edff;--shadow:0 8px 28px rgba(27,73,49,.06)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}.app{display:flex;min-height:100vh}.sidebar{width:245px;background:var(--panel);border-right:1px solid var(--line);padding:24px 16px;display:flex;flex-direction:column;flex-shrink:0}.brand{display:flex;align-items:center;gap:10px;padding:0 10px 28px;font-size:21px;font-weight:800;letter-spacing:-.5px}.brand-mark{width:35px;height:35px;border-radius:12px;background:var(--green);color:#fff;display:grid;place-items:center;font-size:20px}.brand span:last-child{color:var(--green)}.nav-label{font-size:11px;color:var(--muted);font-weight:700;letter-spacing:1.1px;padding:8px 12px}.nav{display:grid;gap:5px}.nav button{border:0;background:transparent;color:var(--muted);text-align:left;padding:11px 13px;border-radius:11px;display:flex;align-items:center;gap:12px;font-weight:600}.nav button.active,.nav button:hover{background:var(--green2);color:var(--green)}.nav .ico{width:20px;text-align:center;font-size:17px}.sidebar-bottom{margin-top:auto;border-top:1px solid var(--line);padding:17px 10px 0;color:var(--muted);font-size:12px}.main{min-width:0;flex:1;padding:28px clamp(16px,3vw,38px) 40px;max-width:1600px;margin:0 auto;width:100%}.topbar{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:25px}.eyebrow{font-size:12px;color:var(--green);font-weight:800;letter-spacing:1px;text-transform:uppercase}.topbar h1{font-size:clamp(23px,3vw,30px);letter-spacing:-.8px;margin:3px 0 4px}.sub{color:var(--muted);margin:0}.top-actions{display:flex;gap:8px;align-items:center}.icon-btn,.btn{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:11px;padding:10px 13px;font-weight:650}.btn.primary{background:var(--green);border-color:var(--green);color:white}.btn.primary:hover{background:#106a48}.btn.danger{color:var(--red);border-color:#f1caca}.btn.small{padding:7px 10px;font-size:13px;border-radius:9px}.btn:disabled{opacity:.5;cursor:not-allowed}.grid{display:grid;gap:16px}.stats{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:18px}.stat{background:var(--panel);border:1px solid var(--line);border-radius:17px;padding:18px;box-shadow:var(--shadow);min-width:0}.stat-head{display:flex;justify-content:space-between;align-items:center;gap:8px;color:var(--muted);font-size:13px;font-weight:650}.stat-icon{width:35px;height:35px;display:grid;place-items:center;border-radius:11px;background:var(--green2);color:var(--green);font-size:17px}.stat.red .stat-icon{background:var(--redbg);color:var(--red)}.stat.blue .stat-icon{background:var(--bluebg);color:var(--blue)}.stat.purple .stat-icon{background:var(--purplebg);color:var(--purple)}.stat-value{font-size:clamp(20px,2vw,27px);font-weight:800;letter-spacing:-.7px;margin:13px 0 4px;overflow-wrap:anywhere}.stat-foot{font-size:12px;color:var(--muted)}.two-col{grid-template-columns:minmax(0,1.4fr) minmax(270px,.8fr)}.panel{background:var(--panel);border:1px solid var(--line);border-radius:17px;padding:20px;box-shadow:var(--shadow);min-width:0}.panel-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}.panel h2{font-size:17px;margin:0;letter-spacing:-.3px}.muted{color:var(--muted)}.recent-list{display:grid;gap:0}.recent-item{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}.recent-item:last-child{border-bottom:0}.avatar{width:39px;height:39px;flex-shrink:0;border-radius:13px;display:grid;place-items:center;background:var(--green2);color:var(--green);font-weight:800}.item-main{min-width:0;flex:1}.item-name{font-weight:750;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.item-meta{font-size:12px;color:var(--muted);margin-top:2px}.item-right{text-align:right;white-space:nowrap}.amount{font-weight:800}.badge{display:inline-flex;align-items:center;gap:5px;border-radius:20px;padding:4px 8px;font-size:11px;font-weight:750;white-space:nowrap}.badge.green{background:var(--green2);color:var(--green)}.badge.red{background:var(--redbg);color:var(--red)}.badge.amber{background:var(--amberbg);color:var(--amber)}.badge.blue{background:var(--bluebg);color:var(--blue)}.badge.gray{background:#eef1ef;color:#637168}.due-list{display:grid;gap:11px}.due-item{padding:12px;border:1px solid var(--line);border-radius:12px;display:flex;gap:10px;align-items:center}.due-date{width:42px;height:44px;display:grid;place-items:center;border-radius:10px;background:var(--amberbg);color:var(--amber);font-size:12px;font-weight:800;flex-shrink:0}.due-item.overdue .due-date{background:var(--redbg);color:var(--red)}.due-info{min-width:0;flex:1}.due-info strong{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.due-info small{color:var(--muted)}.page{display:none}.page.active{display:block}.toolbar{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:14px}.field{display:grid;gap:6px;min-width:0}.field label{font-size:13px;font-weight:700;color:var(--text)}.field input,.field select,.field textarea,.toolbar input,.toolbar select{width:100%;min-width:0;border:1px solid var(--line);border-radius:10px;padding:10px 11px;background:var(--panel);color:var(--text);outline:none}.field input:focus,.field select:focus,.field textarea:focus,.toolbar input:focus,.toolbar select:focus{border-color:var(--green);box-shadow:0 0 0 3px #16845b18}.toolbar .search{flex:1;min-width:190px}.toolbar select{width:auto;min-width:145px}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:12px}table{width:100%;border-collapse:collapse;min-width:760px}th,td{text-align:left;padding:13px 14px;border-bottom:1px solid var(--line);font-size:13px}th{font-size:11px;text-transform:uppercase;letter-spacing:.55px;color:var(--muted);background:color-mix(in srgb,var(--bg) 65%,var(--panel));white-space:nowrap}tbody tr:last-child td{border-bottom:0}tbody tr:hover{background:color-mix(in srgb,var(--green2) 35%,var(--panel))}.person-cell{display:flex;align-items:center;gap:9px}.person-cell .avatar{width:32px;height:32px;border-radius:10px;font-size:12px}.actions{display:flex;gap:5px}.empty{text-align:center;padding:35px 15px;color:var(--muted)}.empty-icon{font-size:30px;margin-bottom:8px}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.field.full{grid-column:1/-1}.radio-row{display:flex;gap:10px;flex-wrap:wrap}.radio-card{border:1px solid var(--line);border-radius:11px;padding:11px 13px;display:flex;align-items:center;gap:8px;flex:1;min-width:180px;cursor:pointer}.radio-card:has(input:checked){border-color:var(--green);background:var(--green2);color:var(--green)}.radio-card input{accent-color:var(--green)}.form-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:20px}.history-row{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--line);align-items:flex-start}.history-row:last-child{border-bottom:0}.history-icon{width:36px;height:36px;border-radius:12px;background:var(--green2);color:var(--green);display:grid;place-items:center;flex-shrink:0}.history-content{flex:1;min-width:0}.history-content strong{display:block}.history-content small{color:var(--muted)}.history-amount{font-weight:800;white-space:nowrap}.charts-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.bar-row{display:grid;grid-template-columns:100px minmax(50px,1fr) 95px;gap:10px;align-items:center;margin:15px 0;font-size:12px}.bar-track{height:9px;background:var(--line);border-radius:10px;overflow:hidden}.bar-fill{height:100%;background:var(--green);border-radius:10px}.bar-value{text-align:right;font-weight:750}.setting-row{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:15px 0;border-bottom:1px solid var(--line)}.setting-row:last-child{border-bottom:0}.setting-row p{margin:3px 0 0;color:var(--muted);font-size:13px}.notice{padding:12px 14px;border-radius:11px;background:var(--bluebg);color:var(--blue);font-size:13px;margin-bottom:16px}.notice.warn{background:var(--amberbg);color:var(--amber)}.modal-backdrop{position:fixed;inset:0;background:#0d1d16a8;display:none;align-items:center;justify-content:center;padding:18px;z-index:10}.modal-backdrop.show{display:flex}.modal{background:var(--panel);border-radius:18px;width:min(560px,100%);max-height:90vh;overflow:auto;padding:23px;box-shadow:0 24px 80px #0003}.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.modal-head h2{margin:0;font-size:20px}.modal-close{border:0;background:var(--bg);color:var(--text);border-radius:9px;width:35px;height:35px;font-size:20px}.toast{position:fixed;right:20px;bottom:20px;background:#183d2c;color:#fff;padding:13px 17px;border-radius:12px;box-shadow:var(--shadow);z-index:20;display:none;max-width:min(400px,calc(100% - 40px))}.toast.show{display:block}.mobile-menu{display:none}.small-note{font-size:12px;color:var(--muted)}.footer-note{margin-top:18px;font-size:12px;color:var(--muted);text-align:center}
+body.dark{--bg:#121a16;--panel:#1b2721;--text:#edf5ef;--muted:#9aaba0;--line:#304037;--green2:#1e3b2d;--redbg:#3b2527;--amberbg:#3d3220;--bluebg:#202f45;--purplebg:#302541;--shadow:0 8px 28px #0002}
+body.dark .badge.gray{background:#2d3932;color:#c0cec5}body.dark th{background:#202c25}
+@media(max-width:1050px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.two-col{grid-template-columns:1fr}.sidebar{width:220px}}
+@media(max-width:700px){.app{display:block}.sidebar{width:100%;padding:12px 14px;border-right:0;border-bottom:1px solid var(--line);display:block}.brand{padding:0 3px 12px}.nav-label,.sidebar-bottom{display:none}.nav{display:flex;overflow-x:auto;gap:4px;padding-bottom:2px}.nav button{white-space:nowrap;padding:9px 11px;font-size:12px;gap:7px}.nav .ico{font-size:15px;width:auto}.main{padding:20px 13px 30px}.topbar{align-items:flex-start}.topbar h1{font-size:24px}.top-actions .btn{font-size:12px;padding:9px}.stats{gap:10px}.stat{padding:14px;border-radius:14px}.stat-head{font-size:11px;align-items:flex-start}.stat-icon{width:29px;height:29px}.stat-value{font-size:20px;margin-top:10px}.stat-foot{font-size:11px}.panel{padding:15px;border-radius:14px}.form-grid,.charts-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.toolbar select{flex:1;min-width:130px}.toolbar .search{min-width:100%}.bar-row{grid-template-columns:85px minmax(40px,1fr) 75px;gap:7px}.setting-row{align-items:flex-start}.radio-card{min-width:100%}.modal{padding:18px}.form-actions .btn{flex:1}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand"><div class="brand-mark">✿</div><div>Megumi <span>Ghi Nợ</span></div></div>
+  <div class="nav-label">MENU CHÍNH</div>
+  <nav class="nav" id="nav">
+    <button class="active" data-page="dashboard"><span class="ico">⌂</span>Tổng quan</button>
+    <button data-page="debts"><span class="ico">▤</span>Khoản nợ</button>
+    <button data-page="add"><span class="ico">＋</span>Thêm khoản nợ</button>
+    <button data-page="history"><span class="ico">↻</span>Lịch sử thanh toán</button>
+    <button data-page="stats"><span class="ico">▥</span>Thống kê</button>
+    <button data-page="backup"><span class="ico">⇅</span>Sao lưu & khôi phục</button>
+    <button data-page="settings"><span class="ico">⚙</span>Cài đặt</button>
+  </nav>
+  <div class="sidebar-bottom">🌱 Quản lý rõ ràng, nhẹ gánh mỗi ngày.<br><br>Megumi Ghi Nợ · Bản cá nhân</div>
+</aside>
+<main class="main">
+  <header class="topbar">
+    <div><div class="eyebrow" id="eyebrow">KHÔNG GIAN TÀI CHÍNH CỦA BẠN</div><h1 id="pageTitle">Tổng quan tài chính 👋</h1><p class="sub" id="pageSub">Theo dõi các khoản vay mượn của bạn một cách dễ dàng.</p></div>
+    <div class="top-actions"><button class="icon-btn" id="themeBtn" title="Đổi giao diện">☾</button><button class="btn primary" id="quickAdd">＋ Thêm khoản nợ</button></div>
+  </header>
+
+  <section class="page active" id="page-dashboard">
+    <div class="grid stats">
+      <div class="stat"><div class="stat-head"><span>Người khác nợ mình</span><span class="stat-icon">↗</span></div><div class="stat-value" id="statLend">0 đ</div><div class="stat-foot" id="countLend">0 khoản đang mở</div></div>
+      <div class="stat red"><div class="stat-head"><span>Mình nợ người khác</span><span class="stat-icon">↙</span></div><div class="stat-value" id="statBorrow">0 đ</div><div class="stat-foot" id="countBorrow">0 khoản đang mở</div></div>
+      <div class="stat blue"><div class="stat-head"><span>Đã thu từ người khác</span><span class="stat-icon">↓</span></div><div class="stat-value" id="statCollected">0 đ</div><div class="stat-foot">Tổng các lần thanh toán đã thu</div></div>
+      <div class="stat purple"><div class="stat-head"><span>Đã trả cho người khác</span><span class="stat-icon">↑</span></div><div class="stat-value" id="statPaid">0 đ</div><div class="stat-foot">Tổng các lần thanh toán đã trả</div></div>
+    </div>
+    <div class="grid two-col">
+      <div class="panel"><div class="panel-head"><h2>Khoản nợ gần đây</h2><button class="btn small" data-goto="debts">Xem tất cả →</button></div><div id="recentList" class="recent-list"></div></div>
+      <div class="panel"><div class="panel-head"><h2>📅 Sắp đến hạn & quá hạn</h2><span class="badge amber" id="dueCount">0 khoản</span></div><div id="dueList" class="due-list"></div></div>
+    </div>
+  </section>
+
+  <section class="page" id="page-debts">
+    <div class="panel">
+      <div class="panel-head"><div><h2>Danh sách khoản nợ</h2><div class="small-note" id="debtCountLabel">Tất cả khoản nợ của bạn</div></div><button class="btn primary" data-goto="add">＋ Thêm khoản</button></div>
+      <div class="toolbar"><input class="search" id="searchInput" placeholder="⌕  Tìm theo tên, ghi chú, mục đích..."><select id="typeFilter"><option value="all">Tất cả loại nợ</option><option value="lend">Người khác nợ mình</option><option value="borrow">Mình nợ người khác</option></select><select id="statusFilter"><option value="all">Tất cả trạng thái</option><option value="unpaid">Chưa trả</option><option value="partial">Đã trả một phần</option><option value="paid">Đã trả hết</option><option value="overdue">Quá hạn</option></select><select id="purposeFilter"><option value="all">Tất cả mục đích</option><option>Mua sắm</option><option>Ăn uống</option><option>Học phí</option><option>Sinh hoạt</option><option>Đi lại</option><option>Sức khỏe</option><option>Tiền nhà</option><option>Giải trí</option><option>Khác</option></select></div>
+      <div class="table-wrap"><table><thead><tr><th>Người liên quan</th><th>Loại nợ</th><th>Mục đích</th><th>Số tiền gốc</th><th>Còn nợ</th><th>Ngày vay/mượn</th><th>Hạn trả</th><th>Trạng thái</th><th>Thao tác</th></tr></thead><tbody id="debtTable"></tbody></table></div>
+      <div class="empty" id="debtEmpty" hidden><div class="empty-icon">📒</div><strong>Chưa có khoản nợ phù hợp</strong><div>Hãy thêm khoản nợ mới hoặc thay đổi bộ lọc.</div></div>
+    </div>
+  </section>
+
+  <section class="page" id="page-add">
+    <div class="panel">
+      <div class="panel-head"><div><h2 id="formTitle">Thêm khoản nợ mới</h2><div class="small-note">Nhập thông tin khoản vay/mượn của bạn.</div></div></div>
+      <form id="debtForm">
+        <input type="hidden" id="editId">
+        <div class="form-grid">
+          <div class="field full"><label>Loại giao dịch *</label><div class="radio-row"><label class="radio-card"><input type="radio" name="debtType" value="lend" checked> ↗ Người khác nợ mình</label><label class="radio-card"><input type="radio" name="debtType" value="borrow"> ↙ Mình nợ người khác</label></div></div>
+          <div class="field"><label for="person">Tên người liên quan *</label><input id="person" required maxlength="100" placeholder="Ví dụ: Nguyễn Minh Anh"></div>
+          <div class="field"><label for="phone">Số điện thoại (không bắt buộc)</label><input id="phone" maxlength="30" placeholder="Số điện thoại"></div>
+          <div class="field"><label for="amount">Số tiền gốc (VNĐ) *</label><input id="amount" required inputmode="decimal" placeholder="Ví dụ: 150000 hoặc 150k"><small class="small-note">Có thể nhập 50000, 50.000 đ hoặc 50k.</small></div>
+          <div class="field"><label for="purpose">Mục đích *</label><select id="purpose" required><option value="Mua sắm">Mua sắm</option><option value="Ăn uống">Ăn uống</option><option value="Học phí">Học phí</option><option value="Sinh hoạt">Sinh hoạt</option><option value="Đi lại">Đi lại</option><option value="Sức khỏe">Sức khỏe</option><option value="Tiền nhà">Tiền nhà</option><option value="Giải trí">Giải trí</option><option value="Công việc">Công việc</option><option value="Khác">Khác</option></select></div>
+          <div class="field"><label for="borrowDate">Ngày vay/mượn hoặc phát sinh *</label><input id="borrowDate" type="date" required></div>
+          <div class="field"><label for="dueDate">Ngày hẹn trả (không bắt buộc)</label><input id="dueDate" type="date"></div>
+          <div class="field full"><label for="note">Ghi chú</label><textarea id="note" rows="3" maxlength="1000" placeholder="Ghi thêm thông tin cần nhớ..."></textarea></div>
+          <div class="field full"><label for="receipt">Ảnh hóa đơn (không bắt buộc, tối đa 1.5 MB)</label><input id="receipt" type="file" accept="image/png,image/jpeg,image/webp"><small class="small-note" id="receiptInfo">Ảnh được lưu trong trình duyệt cùng dữ liệu khoản nợ.</small></div>
+        </div>
+        <div class="form-actions"><button type="button" class="btn" id="cancelForm">Hủy</button><button type="submit" class="btn primary">✓ Lưu khoản nợ</button></div>
+      </form>
+    </div>
+  </section>
+
+  <section class="page" id="page-history">
+    <div class="panel"><div class="panel-head"><div><h2>Lịch sử thanh toán</h2><div class="small-note">Mỗi lần thu hoặc trả đều được lưu lại.</div></div><select id="historyFilter" style="max-width:200px"><option value="all">Tất cả giao dịch</option><option value="lend">Tiền đã thu</option><option value="borrow">Tiền đã trả</option></select></div><div id="historyList"></div></div>
+  </section>
+
+  <section class="page" id="page-stats">
+    <div class="panel" style="margin-bottom:16px"><div class="panel-head"><div><h2>Thống kê tài chính</h2><div class="small-note">Tổng hợp từ dữ liệu khoản nợ đã lưu.</div></div><select id="statsYear" style="max-width:140px"></select></div><div class="grid stats" style="margin:0"><div class="stat"><div class="stat-head">Tổng nợ còn lại</div><div class="stat-value" id="statsOpen">0 đ</div></div><div class="stat blue"><div class="stat-head">Phát sinh trong năm</div><div class="stat-value" id="statsCreated">0 đ</div></div><div class="stat"><div class="stat-head">Đã thu trong năm</div><div class="stat-value" id="statsCollected">0 đ</div></div><div class="stat red"><div class="stat-head">Đã trả trong năm</div><div class="stat-value" id="statsPaid">0 đ</div></div></div></div>
+    <div class="grid charts-grid"><div class="panel"><div class="panel-head"><h2>Số tiền phát sinh theo tháng</h2></div><div id="monthlyChart"></div></div><div class="panel"><div class="panel-head"><h2>Khoản nợ theo mục đích</h2></div><div id="purposeChart"></div></div></div>
+  </section>
+
+  <section class="page" id="page-backup">
+    <div class="panel"><div class="panel-head"><h2>Sao lưu & khôi phục dữ liệu</h2></div><div class="notice warn">Dữ liệu hiện được lưu trong trình duyệt trên thiết bị này. Hãy sao lưu định kỳ để tránh mất dữ liệu khi xóa dữ liệu trình duyệt hoặc đổi thiết bị.</div>
+      <div class="setting-row"><div><strong>Xuất bản sao lưu</strong><p>Tải về tệp JSON gồm khoản nợ, lịch sử thanh toán và ảnh đính kèm.</p></div><button class="btn primary" id="exportBtn">↓ Xuất JSON</button></div>
+      <div class="setting-row"><div><strong>Khôi phục từ bản sao lưu</strong><p>Chọn tệp JSON đã xuất trước đó. Bạn có thể gộp dữ liệu hoặc thay thế dữ liệu hiện tại.</p></div><div style="display:flex;gap:8px;flex-wrap:wrap"><label class="btn" for="importFile">Chọn tệp</label><input type="file" id="importFile" accept=".json,application/json" hidden><button class="btn" id="mergeBtn" disabled>Gộp dữ liệu</button><button class="btn danger" id="replaceBtn" disabled>Thay thế</button></div></div>
+      <p class="small-note" id="importInfo">Chưa chọn tệp sao lưu.</p>
+    </div>
+  </section>
+
+  <section class="page" id="page-settings">
+    <div class="panel"><div class="panel-head"><h2>Cài đặt</h2></div>
+      <div class="setting-row"><div><strong>Giao diện tối</strong><p>Giảm độ sáng khi sử dụng ban đêm.</p></div><button class="btn" id="settingsTheme">Bật / Tắt</button></div>
+      <div class="setting-row"><div><strong>Dữ liệu đang sử dụng</strong><p>Lưu cục bộ trên trình duyệt hiện tại; chưa đồng bộ tự động qua thiết bị khác.</p></div><span class="badge amber">LocalStorage</span></div>
+      <div class="setting-row"><div><strong>Sao lưu dữ liệu</strong><p>Xuất tệp dự phòng trước khi đổi máy hoặc dọn trình duyệt.</p></div><button class="btn" data-goto="backup">Mở sao lưu →</button></div>
+      <div class="setting-row"><div><strong>Xóa toàn bộ dữ liệu</strong><p>Chỉ dùng khi thực sự muốn xóa tất cả khoản nợ và lịch sử trên trình duyệt này.</p></div><button class="btn danger" id="clearAllBtn">Xóa dữ liệu</button></div>
+      <p class="small-note">Megumi Ghi Nợ là công cụ ghi chép cá nhân, không tự gửi thông báo khi đóng trình duyệt và không thay thế chứng từ/hợp đồng pháp lý.</p>
+    </div>
+  </section>
+  <div class="footer-note">Megumi Ghi Nợ · Rõ ràng từng khoản, an tâm mỗi ngày 🌿</div>
+</main>
+</div>
+
+<div class="modal-backdrop" id="paymentModal"><div class="modal"><div class="modal-head"><h2>Ghi nhận thanh toán</h2><button class="modal-close" data-close="paymentModal">×</button></div><form id="paymentForm"><input type="hidden" id="paymentDebtId"><div id="paymentSummary" class="notice"></div><div class="form-grid"><div class="field"><label for="paymentAmount">Số tiền thanh toán (VNĐ) *</label><input id="paymentAmount" required inputmode="decimal" placeholder="Ví dụ: 50000"></div><div class="field"><label for="paymentDate">Ngày thanh toán *</label><input id="paymentDate" type="date" required></div><div class="field full"><label for="paymentNote">Ghi chú</label><input id="paymentNote" maxlength="300" placeholder="Ví dụ: Chuyển khoản ngân hàng"></div></div><div class="form-actions"><button type="button" class="btn" data-close="paymentModal">Hủy</button><button type="submit" class="btn primary">Lưu thanh toán</button></div></form></div></div>
+<div class="modal-backdrop" id="detailModal"><div class="modal"><div class="modal-head"><h2>Chi tiết khoản nợ</h2><button class="modal-close" data-close="detailModal">×</button></div><div id="detailContent"></div></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+(() => {
+'use strict';
+const STORAGE_KEY='megumi_gno_v1';
+const $=id=>document.getElementById(id);
+const today=()=>new Date().toISOString().slice(0,10);
+let debts=[],pendingImport=null,toastTimer;
+const pageInfo={
+ dashboard:['KHÔNG GIAN TÀI CHÍNH CỦA BẠN','Tổng quan tài chính 👋','Theo dõi các khoản vay mượn của bạn một cách dễ dàng.'],
+ debts:['QUẢN LÝ DỮ LIỆU','Danh sách khoản nợ','Tìm kiếm và theo dõi từng khoản vay/mượn.'],
+ add:['GHI CHÉP KHOẢN NỢ','Thêm khoản nợ','Ghi lại thông tin rõ ràng để dễ đối chiếu.'],
+ history:['DÒNG TIỀN','Lịch sử thanh toán','Theo dõi từng lần thu tiền và trả tiền.'],
+ stats:['BÁO CÁO','Thống kê tài chính','Xem tổng quan khoản nợ theo thời gian và mục đích.'],
+ backup:['AN TOÀN DỮ LIỆU','Sao lưu & khôi phục','Chủ động lưu một bản sao dữ liệu của bạn.'],
+ settings:['TÙY CHỈNH','Cài đặt','Quản lý giao diện và dữ liệu của Megumi.']
+};
+function uid(){return 'd_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,9)}
+function fmt(n){return Math.round(Number(n)||0).toLocaleString('vi-VN')+' đ'}
+function parseMoney(raw){
+ if(typeof raw==='number') return Number.isSafeInteger(raw)&&raw>=0?raw:NaN;
+ let s=String(raw??'').trim().toLowerCase().replace(/\s/g,'').replace(/₫|đ/g,'');
+ if(!s)return NaN;
+ let mult=1;
+ if(s.endsWith('k')){mult=1000;s=s.slice(0,-1)}
+ else if(s.endsWith('tr')||s.endsWith('m')){mult=1000000;s=s.slice(0,-(s.endsWith('tr')?2:1))}
+ s=s.replace(/[.,](?=\d{3}(?:\D|$))/g,'').replace(/[^\d-]/g,'');
+ const n=Number(s)*mult;
+ return Number.isSafeInteger(n)&&n>=0?n:NaN;
+}
+function escapeHtml(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function load(){
+ try{const raw=localStorage.getItem(STORAGE_KEY);debts=raw?JSON.parse(raw):[];if(!Array.isArray(debts))debts=[]}
+ catch(e){debts=[];toast('Không đọc được dữ liệu đã lưu. Hãy thử khôi phục từ bản sao lưu.')}
+ debts=debts.map(d=>({...d,payments:Array.isArray(d.payments)?d.payments:[],paid:0}));
+ debts.forEach(recalc);
+}
+function save(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(debts));return true}catch(e){toast('Không đủ dung lượng lưu. Hãy xuất bản sao lưu hoặc xóa bớt ảnh.');return false}}
+function paidOf(d){return (d.payments||[]).reduce((s,p)=>s+(Number(p.amount)||0),0)}
+function remaining(d){return Math.max(0,(Number(d.amount)||0)-paidOf(d))}
+function recalc(d){d.paid=paidOf(d);d.remaining=remaining(d)}
+function isOverdue(d){return !!d.dueDate&&d.dueDate<today()&&remaining(d)>0}
+function status(d){if(remaining(d)===0)return 'paid';if(isOverdue(d))return 'overdue';if(paidOf(d)>0)return 'partial';return 'unpaid'}
+const statusText={unpaid:'Chưa trả',partial:'Đã trả một phần',paid:'Đã trả hết',overdue:'Quá hạn'};
+const statusClass={unpaid:'gray',partial:'amber',paid:'green',overdue:'red'};
+function badgeFor(d){let s=status(d);return `<span class="badge ${statusClass[s]}">${statusText[s]}</span>`}
+function typeText(t){return t==='lend'?'Người khác nợ mình':'Mình nợ người khác'}
+function shortDate(s){if(!s)return '—';const p=s.split('-');return p.length===3?`${p[2]}/${p[1]}/${p[0]}`:s}
+function initials(name){return (String(name||'?').trim().split(/\s+/).slice(-2).map(x=>x[0]||'').join('')||'?').toUpperCase()}
+function sortNewest(arr){return [...arr].sort((a,b)=>(b.createdAt||b.borrowDate||'').localeCompare(a.createdAt||a.borrowDate||''))}
+function activePage(page){
+ if(!pageInfo[page])page='dashboard';
+ document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
+ $('page-'+page).classList.add('active');
+ document.querySelectorAll('#nav button').forEach(x=>x.classList.toggle('active',x.dataset.page===page));
+ $('eyebrow').textContent=pageInfo[page][0];$('pageTitle').textContent=pageInfo[page][1];$('pageSub').textContent=pageInfo[page][2];
+ if(page==='add'&&!$('editId').value) resetForm(false);
+ if(page==='dashboard')renderDashboard();
+ if(page==='debts')renderDebts();
+ if(page==='history')renderHistory();
+ if(page==='stats')renderStats();
+ if(page==='backup')updateImportButtons();
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),3200)}
+function sumByType(type){return debts.filter(d=>d.type===type).reduce((s,d)=>s+remaining(d),0)}
+function sumPayments(type,year=null){return debts.filter(d=>d.type===type).reduce((s,d)=>s+(d.payments||[]).filter(p=>year===null||String(p.date||'').startsWith(year+'-')).reduce((a,p)=>a+(Number(p.amount)||0),0),0)}
+function renderDashboard(){
+ $('statLend').textContent=fmt(sumByType('lend'));$('statBorrow').textContent=fmt(sumByType('borrow'));
+ $('statCollected').textContent=fmt(sumPayments('lend'));$('statPaid').textContent=fmt(sumPayments('borrow'));
+ $('countLend').textContent=debts.filter(d=>d.type==='lend'&&remaining(d)>0).length+' khoản đang mở';
+ $('countBorrow').textContent=debts.filter(d=>d.type==='borrow'&&remaining(d)>0).length+' khoản đang mở';
+ const recent=sortNewest(debts).slice(0,5);
+ $('recentList').innerHTML=recent.length?recent.map(d=>`<div class="recent-item"><div class="avatar">${escapeHtml(initials(d.person))}</div><div class="item-main"><div class="item-name">${escapeHtml(d.person)}</div><div class="item-meta">${escapeHtml(d.purpose)} · ${shortDate(d.borrowDate)}</div></div><div class="item-right"><div class="amount">${fmt(remaining(d))}</div>${badgeFor(d)}</div></div>`).join(''):`<div class="empty"><div class="empty-icon">🌱</div><strong>Chưa có khoản nợ nào</strong><div>Thêm khoản nợ đầu tiên để bắt đầu theo dõi.</div><br><button class="btn primary" data-goto="add">＋ Thêm khoản nợ</button></div>`;
+ const due=debts.filter(d=>remaining(d)>0&&d.dueDate).sort((a,b)=>a.dueDate.localeCompare(b.dueDate)).filter(d=>d.dueDate<=new Date(Date.now()+7*86400000).toISOString().slice(0,10)).slice(0,5);
+ $('dueCount').textContent=due.length+' khoản';
+ $('dueList').innerHTML=due.length?due.map(d=>`<div class="due-item ${isOverdue(d)?'overdue':''}"><div class="due-date">${isOverdue(d)?'!':shortDate(d.dueDate).slice(0,5)}</div><div class="due-info"><strong>${escapeHtml(d.person)}</strong><small>${isOverdue(d)?'Đã quá hạn':'Hạn trả '+shortDate(d.dueDate)}</small></div><strong style="font-size:13px">${fmt(remaining(d))}</strong></div>`).join(''):`<div class="empty"><div class="empty-icon">☀️</div><strong>Không có khoản sắp đến hạn</strong><div>Các khoản có hạn trong 7 ngày sẽ xuất hiện tại đây.</div></div>`;
+}
+function filteredDebts(){
+ const q=$('searchInput').value.trim().toLocaleLowerCase('vi');
+ const type=$('typeFilter').value,statusFilter=$('statusFilter').value,purpose=$('purposeFilter').value;
+ return sortNewest(debts).filter(d=>{
+  const hay=[d.person,d.phone,d.note,d.purpose,typeText(d.type)].join(' ').toLocaleLowerCase('vi');
+  return (!q||hay.includes(q))&&(type==='all'||d.type===type)&&(purpose==='all'||d.purpose===purpose)&&(statusFilter==='all'||status(d)===statusFilter);
+ });
+}
+function renderDebts(){
+ const arr=filteredDebts();$('debtCountLabel').textContent=`Hiển thị ${arr.length}/${debts.length} khoản nợ`;
+ $('debtEmpty').hidden=arr.length>0;
+ $('debtTable').innerHTML=arr.map(d=>`<tr><td><div class="person-cell"><div class="avatar">${escapeHtml(initials(d.person))}</div><div><strong>${escapeHtml(d.person)}</strong>${d.phone?`<div class="small-note">${escapeHtml(d.phone)}</div>`:''}</div></div></td><td><span class="badge ${d.type==='lend'?'green':'amber'}">${d.type==='lend'?'Người khác nợ':'Mình đang nợ'}</span></td><td>${escapeHtml(d.purpose)}</td><td>${fmt(d.amount)}</td><td><strong>${fmt(remaining(d))}</strong></td><td>${shortDate(d.borrowDate)}</td><td>${shortDate(d.dueDate)}</td><td>${badgeFor(d)}</td><td><div class="actions"><button class="btn small" title="Chi tiết" data-action="detail" data-id="${d.id}">Xem</button>${remaining(d)>0?`<button class="btn small primary" data-action="pay" data-id="${d.id}">Trả</button>`:''}<button class="btn small" title="Sửa" data-action="edit" data-id="${d.id}">✎</button><button class="btn small danger" title="Xóa" data-action="delete" data-id="${d.id}">×</button></div></td></tr>`).join('');
+}
+function resetForm(clear=true){
+ $('debtForm').reset();$('editId').value='';$('formTitle').textContent='Thêm khoản nợ mới';$('borrowDate').value=today();$('dueDate').value='';$('receiptInfo').textContent='Ảnh được lưu trong trình duyệt cùng dữ liệu khoản nợ.';
+ if(clear)$('receipt').value='';
+}
+function editDebt(id){
+ const d=debts.find(x=>x.id===id);if(!d)return;
+ resetForm();$('editId').value=d.id;
+ document.querySelector(`input[name="debtType"][value="${d.type}"]`).checked=true;
+ $('person').value=d.person||'';$('phone').value=d.phone||'';$('amount').value=String(d.amount);
+ $('purpose').value=d.purpose||'Khác';$('borrowDate').value=d.borrowDate||today();$('dueDate').value=d.dueDate||'';$('note').value=d.note||'';
+ $('receiptInfo').textContent=d.receipt?'Đã có ảnh đính kèm. Chọn ảnh mới để thay thế.':'Chưa có ảnh đính kèm.';
+ activePage('add');$('formTitle').textContent='Chỉnh sửa khoản nợ';
+}
+function openPayment(id){
+ const d=debts.find(x=>x.id===id);if(!d)return;
+ $('paymentDebtId').value=id;$('paymentAmount').value='';$('paymentDate').value=today();$('paymentNote').value='';
+ $('paymentSummary').innerHTML=`<strong>${escapeHtml(d.person)}</strong><br>Còn nợ: <strong>${fmt(remaining(d))}</strong> · ${escapeHtml(typeText(d.type))}`;
+ $('paymentModal').classList.add('show');setTimeout(()=>$('paymentAmount').focus(),50);
+}
+function openDetail(id){
+ const d=debts.find(x=>x.id===id);if(!d)return;
+ const pays=[...(d.payments||[])].sort((a,b)=>(b.date||'').localeCompare(a.date||''));
+ $('detailContent').innerHTML=`<div class="grid" style="gap:12px"><div class="notice">${escapeHtml(typeText(d.type))} · ${escapeHtml(d.purpose)}</div><div class="grid stats" style="grid-template-columns:repeat(2,minmax(0,1fr));margin:0"><div class="stat"><div class="stat-head">Tiền gốc</div><div class="stat-value">${fmt(d.amount)}</div></div><div class="stat"><div class="stat-head">Còn nợ</div><div class="stat-value">${fmt(remaining(d))}</div></div></div><div><strong>${escapeHtml(d.person)}</strong>${d.phone?` · ${escapeHtml(d.phone)}`:''}<div class="small-note">Ngày phát sinh: ${shortDate(d.borrowDate)} · Hạn trả: ${shortDate(d.dueDate)}</div></div><div>${badgeFor(d)}</div>${d.note?`<div><strong>Ghi chú</strong><p style="white-space:pre-wrap;margin:5px 0">${escapeHtml(d.note)}</p></div>`:''}${d.receipt?`<div><strong>Ảnh hóa đơn</strong><br><img src="${d.receipt}" alt="Ảnh hóa đơn" style="max-width:100%;max-height:220px;object-fit:contain;border-radius:10px;margin-top:8px"></div>`:''}<div><strong>Lịch sử thanh toán (${pays.length})</strong>${pays.length?pays.map(p=>`<div class="history-row"><div class="history-icon">✓</div><div class="history-content"><strong>${fmt(p.amount)}</strong><small>${shortDate(p.date)}${p.note?' · '+escapeHtml(p.note):''}</small></div></div>`).join(''):'<div class="small-note" style="padding:10px 0">Chưa có thanh toán.</div>'}</div><div class="form-actions"><button class="btn" data-modal-edit="${d.id}">Sửa khoản nợ</button>${remaining(d)>0?`<button class="btn primary" data-modal-pay="${d.id}">＋ Ghi thanh toán</button>`:''}</div></div>`;
+ $('detailModal').classList.add('show');
+}
+function renderHistory(){
+ const type=$('historyFilter').value;
+ const rows=[];
+ debts.forEach(d=>(d.payments||[]).forEach(p=>rows.push({...p,debtId:d.id,person:d.person,type:d.type,purpose:d.purpose})));
+ rows.sort((a,b)=>(b.date||'').localeCompare(a.date||''));
+ const filtered=rows.filter(p=>type==='all'||p.type===type);
+ $('historyList').innerHTML=filtered.length?filtered.map(p=>`<div class="history-row"><div class="history-icon">${p.type==='lend'?'↓':'↑'}</div><div class="history-content"><strong>${escapeHtml(p.person)} · ${p.type==='lend'?'Đã thu tiền':'Đã trả tiền'}</strong><small>${shortDate(p.date)} · ${escapeHtml(p.purpose)}${p.note?' · '+escapeHtml(p.note):''}</small></div><div class="history-amount">${p.type==='lend'?'+':'−'}${fmt(p.amount)}</div><button class="btn small" data-action="detail" data-id="${p.debtId}">Xem</button></div>`).join(''):'<div class="empty"><div class="empty-icon">↻</div><strong>Chưa có giao dịch thanh toán</strong><div>Các lần thanh toán sẽ được lưu tại đây.</div></div>';
+}
+function renderBars(container,items){
+ if(!items.length){$(container).innerHTML='<div class="empty">Chưa có dữ liệu để thống kê.</div>';return}
+ const max=Math.max(...items.map(x=>x.value),1);
+ $(container).innerHTML=items.map(x=>`<div class="bar-row"><div title="${escapeHtml(x.label)}">${escapeHtml(x.label)}</div><div class="bar-track"><div class="bar-fill" style="width:${Math.max(0,x.value/max*100)}%"></div></div><div class="bar-value">${fmt(x.value)}</div></div>`).join('');
+}
+function renderStats(){
+ const year=Number($('statsYear').value)||new Date().getFullYear(),ys=String(year);
+ $('statsOpen').textContent=fmt(sumByType('lend')+sumByType('borrow'));
+ $('statsCreated').textContent=fmt(debts.filter(d=>(d.borrowDate||'').startsWith(ys)).reduce((s,d)=>s+d.amount,0));
+ $('statsCollected').textContent=fmt(sumPayments('lend',year));$('statsPaid').textContent=fmt(sumPayments('borrow',year));
+ const months=Array.from({length:12},(_,i)=>({label:'T'+(i+1),value:debts.filter(d=>(d.borrowDate||'').startsWith(`${ys}-${String(i+1).padStart(2,'0')}`)).reduce((s,d)=>s+d.amount,0)}));
+ renderBars('monthlyChart',months);
+ const purposes={};debts.filter(d=>(d.borrowDate||'').startsWith(ys)).forEach(d=>purposes[d.purpose]=(purposes[d.purpose]||0)+d.amount);
+ renderBars('purposeChart',Object.entries(purposes).map(([label,value])=>({label,value})).sort((a,b)=>b.value-a.value));
+}
+function openModal(id){$(id).classList.add('show')}
+function closeModal(id){$(id).classList.remove('show')}
+function deleteDebt(id){
+ const d=debts.find(x=>x.id===id);if(!d)return;
+ if(!confirm(`Xóa khoản nợ của "${d.person}" và lịch sử thanh toán đi kèm? Hãy sao lưu trước nếu cần giữ lại.`))return;
+ debts=debts.filter(x=>x.id!==id);save();refresh();toast('Đã xóa khoản nợ.');
+}
+function refresh(){renderDashboard();renderDebts();renderHistory();renderStats()}
+function download(name,content,type='application/json'){
+ const blob=new Blob([content],{type});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+}
+function exportData(){download(`megumi-ghi-no-${today()}.json`,JSON.stringify({app:'Megumi Ghi Nợ',version:1,exportedAt:new Date().toISOString(),debts},null,2))}
+function updateImportButtons(){
+ const disabled=!pendingImport;
+ $('mergeBtn').disabled=disabled;$('replaceBtn').disabled=disabled;
+}
+function normalizeImported(arr){
+ if(!Array.isArray(arr))throw new Error('Tệp sao lưu không có danh sách khoản nợ hợp lệ.');
+ return arr.map(d=>{
+  if(!d||typeof d!=='object'||!d.person||!Number.isSafeInteger(Number(d.amount))||Number(d.amount)<0)throw new Error('Tệp có khoản nợ không hợp lệ.');
+  const payments=Array.isArray(d.payments)?d.payments.map(p=>({id:String(p.id||uid()),amount:Number(p.amount),date:String(p.date||today()),note:String(p.note||'')})): [];
+  if(payments.some(p=>!Number.isSafeInteger(p.amount)||p.amount<0)||payments.reduce((s,p)=>s+p.amount,0)>Number(d.amount))throw new Error('Tệp có lịch sử thanh toán không hợp lệ.');
+  return {...d,id:String(d.id||uid()),type:d.type==='borrow'?'borrow':'lend',person:String(d.person).slice(0,100),amount:Number(d.amount),purpose:String(d.purpose||'Khác'),borrowDate:String(d.borrowDate||today()),dueDate:String(d.dueDate||''),note:String(d.note||''),payments,createdAt:String(d.createdAt||new Date().toISOString())};
+ });
+}
+$('nav').addEventListener('click',e=>{const b=e.target.closest('[data-page]');if(b)activePage(b.dataset.page)});
+document.addEventListener('click',e=>{
+ const go=e.target.closest('[data-goto]');if(go){activePage(go.dataset.goto);return}
+ const act=e.target.closest('[data-action]');if(act){const id=act.dataset.id;switch(act.dataset.action){case'detail':openDetail(id);break;case'pay':openPayment(id);break;case'edit':editDebt(id);break;case'delete':deleteDebt(id);break}return}
+ const close=e.target.closest('[data-close]');if(close){closeModal(close.dataset.close);return}
+ const edit=e.target.closest('[data-modal-edit]');if(edit){closeModal('detailModal');editDebt(edit.dataset.modalEdit);return}
+ const pay=e.target.closest('[data-modal-pay]');if(pay){closeModal('detailModal');openPayment(pay.dataset.modalPay);return}
+ if(e.target.classList.contains('modal-backdrop'))e.target.classList.remove('show');
+});
+$('quickAdd').addEventListener('click',()=>{resetForm();activePage('add')});
+$('cancelForm').addEventListener('click',()=>{resetForm();activePage('debts')});
+['searchInput','typeFilter','statusFilter','purposeFilter'].forEach(id=>$(id).addEventListener(id==='searchInput'?'input':'change',renderDebts));
+$('historyFilter').addEventListener('change',renderHistory);
+$('statsYear').innerHTML=Array.from({length:7},(_,i)=>new Date().getFullYear()-3+i).map(y=>`<option value="${y}" ${y===new Date().getFullYear()?'selected':''}>Năm ${y}</option>`).join('');
+$('statsYear').addEventListener('change',renderStats);
+$('debtForm').addEventListener('submit',async e=>{
+ e.preventDefault();
+ const id=$('editId').value,old=debts.find(d=>d.id===id);
+ const amount=parseMoney($('amount').value);
+ if(!Number.isSafeInteger(amount)||amount<=0){toast('Vui lòng nhập số tiền hợp lệ lớn hơn 0.');$('amount').focus();return}
+ if(old&&amount<paidOf(old)){toast('Số tiền gốc không thể thấp hơn tổng đã thanh toán.');return}
+ let receipt=old?.receipt||'';
+ const file=$('receipt').files[0];
+ if(file){
+  if(!['image/jpeg','image/png','image/webp'].includes(file.type)){toast('Ảnh chỉ hỗ trợ JPG, PNG hoặc WebP.');return}
+  if(file.size>1.5*1024*1024){toast('Ảnh vượt quá 1.5 MB. Hãy chọn ảnh nhỏ hơn.');return}
+  try{receipt=await new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=reject;r.readAsDataURL(file)})}catch{toast('Không đọc được ảnh.');return}
+ }
+ const d={...(old||{}),id:old?.id||uid(),type:document.querySelector('input[name="debtType"]:checked').value,person:$('person').value.trim(),phone:$('phone').value.trim(),amount,purpose:$('purpose').value,borrowDate:$('borrowDate').value,dueDate:$('dueDate').value,note:$('note').value.trim(),receipt,createdAt:old?.createdAt||new Date().toISOString(),updatedAt:new Date().toISOString(),payments:old?.payments||[]};
+ if(!d.person){toast('Vui lòng nhập tên người liên quan.');return}
+ if(d.dueDate&&d.dueDate<d.borrowDate){toast('Ngày hẹn trả không nên trước ngày phát sinh khoản nợ.');return}
+ if(old)debts=debts.map(x=>x.id===id?d:x);else debts.unshift(d);
+ if(!save())return;
+ resetForm();refresh();activePage('debts');toast(old?'Đã cập nhật khoản nợ.':'Đã lưu khoản nợ mới.');
+});
+$('paymentForm').addEventListener('submit',e=>{
+ e.preventDefault();const d=debts.find(x=>x.id===$('paymentDebtId').value);if(!d)return;
+ const amount=parseMoney($('paymentAmount').value),left=remaining(d);
+ if(!Number.isSafeInteger(amount)||amount<=0){toast('Vui lòng nhập số tiền thanh toán hợp lệ.');return}
+ if(amount>left){toast('Số tiền thanh toán vượt quá số dư còn nợ ('+fmt(left)+').');return}
+ d.payments.push({id:uid(),amount,date:$('paymentDate').value,note:$('paymentNote').value.trim(),createdAt:new Date().toISOString()});
+ recalc(d);if(!save())return;closeModal('paymentModal');refresh();toast('Đã lưu thanh toán.');
+});
+$('themeBtn').addEventListener('click',toggleTheme);$('settingsTheme').addEventListener('click',toggleTheme);
+function toggleTheme(){document.body.classList.toggle('dark');localStorage.setItem('megumi_theme',document.body.classList.contains('dark')?'dark':'light');$('themeBtn').textContent=document.body.classList.contains('dark')?'☀':'☾'}
+$('exportBtn').addEventListener('click',exportData);
+$('importFile').addEventListener('change',async e=>{
+ const f=e.target.files[0];pendingImport=null;
+ if(!f){updateImportButtons();return}
+ if(f.size>15*1024*1024){$('importInfo').textContent='Tệp quá lớn (giới hạn 15 MB).';updateImportButtons();return}
+ try{const obj=JSON.parse(await f.text());pendingImport=normalizeImported(obj.debts);$('importInfo').textContent=`Đã đọc ${pendingImport.length} khoản nợ. Chọn Gộp dữ liệu hoặc Thay thế.`}
+ catch(err){$('importInfo').textContent='Không thể đọc tệp: '+err.message;pendingImport=null}
+ updateImportButtons();e.target.value='';
+});
+$('mergeBtn').addEventListener('click',()=>{
+ if(!pendingImport)return;
+ const existing=new Set(debts.map(d=>d.id));const additions=pendingImport.map(d=>existing.has(d.id)?{...d,id:uid()}:d);
+ debts=[...debts,...additions];if(save()){pendingImport=null;updateImportButtons();refresh();$('importInfo').textContent='Đã gộp dữ liệu thành công.';toast('Đã gộp dữ liệu sao lưu.')}
+});
+$('replaceBtn').addEventListener('click',()=>{
+ if(!pendingImport)return;
+ if(!confirm('Thay thế toàn bộ dữ liệu hiện tại bằng bản sao lưu? Nên xuất bản sao lưu hiện tại trước khi tiếp tục.'))return;
+ debts=pendingImport; if(save()){pendingImport=null;updateImportButtons();refresh();$('importInfo').textContent='Đã khôi phục dữ liệu thành công.';toast('Đã khôi phục dữ liệu.')}
+});
+$('clearAllBtn').addEventListener('click',()=>{
+ if(!confirm('Bạn chắc chắn muốn xóa toàn bộ khoản nợ và lịch sử trên trình duyệt này? Hành động này không thể hoàn tác. Hãy xuất bản sao lưu trước.'))return;
+ if(!confirm('Xác nhận lần cuối: xóa toàn bộ dữ liệu Megumi Ghi Nợ?'))return;
+ debts=[];save();refresh();toast('Đã xóa dữ liệu trên trình duyệt này.');
+});
+function init(){
+ if(localStorage.getItem('megumi_theme')==='dark')document.body.classList.add('dark');
+ $('themeBtn').textContent=document.body.classList.contains('dark')?'☀':'☾';
+ load();$('borrowDate').value=today();refresh();
+}
+init();
+})();
+</script>
+</body>
+</html>
